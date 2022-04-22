@@ -164,6 +164,5 @@ PROTO_API int luaopen_protolua(lua_State* L)
     proto_init(L);
     lua_newtable(L);
     luaL_setfuncs(L, protoLib, 0);
-    lua_setglobal(L, "proto");
-    return 0;
+    return 1;
 }
