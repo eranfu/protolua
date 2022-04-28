@@ -84,10 +84,11 @@ static int decode(lua_State *L)
     if (!proto_decode(proto, L, data, size))
     {
         proto_error("proto.decode fail, proto=%s", proto);
-        lua_getglobal(L, "print");
-        lua_pushfstring(L, "proto.decode fail, proto=%s, size=%d", proto, size);
-        lua_call(L, 1, 0);
-        return 0;
+        lua_getglobal(L, "print"); // print
+        lua_pushfstring(L, "proto.decode fail, proto=%s, size=%d", proto, size); // print, error
+        lua_call(L, 1, 0); // empty
+        lua_pushnil(L); // nil
+        return 1;
     }
 
     return lua_gettop(L) - 2;
