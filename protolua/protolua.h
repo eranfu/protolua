@@ -18,12 +18,12 @@
 #define proto_error(fmt, ...)  log_error(fmt, __VA_ARGS__)
 #define proto_fatal(fmt, ...)  log_fatal(fmt, __VA_ARGS__)
 #else
-#define proto_trace(fmt, ...)  printf("[trace]"fmt"\n", __VA_ARGS__)
-#define proto_debug(fmt, ...)  printf("[debug]"fmt"\n", __VA_ARGS__)
-#define proto_info(fmt, ...)   printf("[info]"fmt"\n", __VA_ARGS__)
-#define proto_warn(fmt, ...)   printf("[warn]"fmt"\n", __VA_ARGS__)
-#define proto_error(fmt, ...)  printf("[error]"fmt"\n", __VA_ARGS__)
-#define proto_fatal(fmt, ...)  printf("[fatal]"fmt"\n", __VA_ARGS__)
+#define proto_trace(fmt, ...)  printf("[trace]" fmt "\n", __VA_ARGS__)
+#define proto_debug(fmt, ...)  printf("[debug]" fmt "\n", __VA_ARGS__)
+#define proto_info(fmt, ...)   printf("[info]" fmt "\n", __VA_ARGS__)
+#define proto_warn(fmt, ...)   printf("[warn]" fmt "\n", __VA_ARGS__)
+#define proto_error(fmt, ...)  printf("[error]" fmt "\n", __VA_ARGS__)
+#define proto_fatal(fmt, ...)  printf("[fatal]" fmt "\n", __VA_ARGS__)
 #endif
 
 #ifndef lua_toint64
