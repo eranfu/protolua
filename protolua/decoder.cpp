@@ -123,7 +123,7 @@ bool decode_single(const Message& message, const FieldDescriptor* field, lua_Sta
         }
         break;
     default:
-        proto_error("decode_single field unknow type, field=%s", field->full_name().c_str());
+        proto_error("decode_single field unknown type, field=%s", field->full_name().c_str());
         return false;
     }
     return true;

@@ -65,7 +65,8 @@ inline void lua_pushint64(lua_State *L, long long value)
     if (abs(value) > 99999999999999)
     {
         char str[32];
-        lua_pushstring(L, _i64toa(value, str, 10));
+        snprintf(str, 32, "%lld", value);
+        lua_pushstring(L, str);
         return;
     }
 
