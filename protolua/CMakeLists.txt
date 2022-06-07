@@ -10,14 +10,8 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STR
     set(CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS "${CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS} -undefined dynamic_lookup")
 endif()
 
-IF (CMAKE_SYSTEM_NAME MATCHES "Linux" OR CMAKE_SYSTEM_NAME MATCHES "Darwin")
-    add_library(${PROJECT_NAME} SHARED ${DIR_SRCS} ${DIR_INCS})
-    target_link_libraries(${PROJECT_NAME} libprotobuf)
-ELSE ()
-    add_library(${PROJECT_NAME} SHARED ${DIR_SRCS} ${DIR_INCS})
-    target_link_libraries(${PROJECT_NAME} lua-${LUA_VERSION} libprotobuf)
-ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux" OR CMAKE_SYSTEM_NAME MATCHES "Darwin")
-
+add_library(${PROJECT_NAME} SHARED ${DIR_SRCS} ${DIR_INCS})
+target_link_libraries(${PROJECT_NAME} lua-${LUA_VERSION} libprotobuf)
 
 include_directories(../)
 include_directories(../thirdparty/lua-${LUA_VERSION}/src)
