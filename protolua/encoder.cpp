@@ -223,7 +223,7 @@ bool proto_encode(const char* proto, lua_State* L, int index, char* output, size
 
     if (output && size) // export to buffer
     {
-        PROTO_DO(message->SerializeToArray(output, *size));
+        PROTO_DO(message->SerializeToArray(output, (int)*size));
         *size = message->ByteSizeLong();
     }
     else 
@@ -256,7 +256,7 @@ bool proto_pack(const char* proto, lua_State* L, int start, int end, char* outpu
 
     if (output && size) // export to buffer
     {
-        PROTO_DO(message->SerializeToArray(output, *size));
+        PROTO_DO(message->SerializeToArray(output, (int)*size));
         *size = message->ByteSizeLong();
     }
     else 

@@ -77,17 +77,26 @@ static int decode(lua_State *L)
 {
     assert(lua_gettop(L) == 2);
     size_t size = 0;
-    luaL_checktype(L, 1, LUA_TSTRING);
     const char* proto = lua_tostring(L, 1);
-    luaL_checktype(L, 2, LUA_TSTRING);
+    if (proto == nullptr)
+    {
+        proto_error("proto name is invalid.");
+        lua_pushnil(L); // nil
+        return 1;
+    }
+
     const char* data = lua_tolstring(L, 2, &size);
+    if (data == nullptr)
+    {
+        proto_error("proto data is invalid. name: %s", proto);
+        lua_pushnil(L);
+        return 1;
+    }
+
     if (!proto_decode(proto, L, data, size))
     {
         proto_error("proto.decode fail, proto=%s", proto);
-        lua_getglobal(L, "print"); // print
-        lua_pushfstring(L, "proto.decode fail, proto=%s, size=%d", proto, size); // print, error
-        lua_call(L, 1, 0); // empty
-        lua_pushnil(L); // nil
+        lua_pushnil(L);
         return 1;
     }
 

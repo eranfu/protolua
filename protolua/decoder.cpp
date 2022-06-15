@@ -224,7 +224,7 @@ bool proto_decode(const char* proto, lua_State* L, const char* input, size_t siz
     PROTO_ASSERT(prototype);
 
     std::unique_ptr<Message> message(prototype->New());
-    PROTO_DO(message->ParseFromArray(input, size));
+    PROTO_DO(message->ParseFromArray(input, (int)size));
     return decode_message(*message.get(), descriptor, L);
 }
 
@@ -238,7 +238,7 @@ bool proto_unpack(const char* proto, lua_State* L, const char* input, size_t siz
     PROTO_ASSERT(prototype);
 
     std::unique_ptr<Message> message(prototype->New());
-    PROTO_DO(message->ParseFromArray(input, size));
+    PROTO_DO(message->ParseFromArray(input, (int)size));
 
     std::vector<const FieldDescriptor*> fields = SortFieldsByNumber(descriptor);
     for (int i = 0; i < (int)fields.size(); i++)
