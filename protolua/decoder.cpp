@@ -225,7 +225,8 @@ bool proto_decode(const char* proto, lua_State* L, const char* input, size_t siz
 
     std::unique_ptr<Message> message(prototype->New());
     PROTO_DO(message->ParseFromArray(input, (int)size));
-    return decode_message(*message.get(), descriptor, L);
+
+    return decode_message(*message, descriptor, L);
 }
 
 std::vector<const FieldDescriptor*> SortFieldsByNumber(const Descriptor* descriptor);
